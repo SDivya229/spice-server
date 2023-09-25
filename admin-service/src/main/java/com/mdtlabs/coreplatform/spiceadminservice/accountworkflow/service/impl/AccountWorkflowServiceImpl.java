@@ -69,9 +69,11 @@ public class AccountWorkflowServiceImpl implements AccountWorkflowService {
      * {@inheritDoc}
      */
     public ResponseListDTO getAccountWorkflows(SearchRequestDTO request) {
+
         if (Objects.isNull(request.getCountryId()) || 0 == request.getCountryId()) {
             throw new DataNotAcceptableException(1001);
         }
+
         Pageable pageable = Pagination.setPagination(request.getSkip(), request.getLimit(),
                 List.of(Order.asc(Constants.MODULE_TYPE), Order.desc(Constants.UPDATED_AT)));
         String searchTerm = request.getSearchTerm();
